@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💗</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#ffd6e7,#fff1f6);
+  overflow:hidden;
+}
+
+.card{
+  width:90%;
+  max-width:420px;
+  min-height:520px;
+  background:white;
+  border-radius:28px;
+  padding:30px 22px;
+  text-align:center;
+  box-shadow:0 10px 35px rgba(0,0,0,.15);
+  position:relative;
+  z-index:2;
+}
+
+h1{
+  color:#ff5c91;
+  font-size:28px;
+}
+
+.message{
+  font-size:19px;
+  line-height:1.8;
+  color:#555;
+  min-height:80px;
+}
+
+.photo{
+  width:100%;
+  max-height:260px;
+  object-fit:cover;
+  border-radius:20px;
+  margin:15px 0;
+  display:none;
+}
+
+button{
+  border:0;
+  background:#ff6f9f;
+  color:white;
+  padding:13px 28px;
+  border-radius:30px;
+  font-size:17px;
+  margin-top:20px;
+  cursor:pointer;
+}
+
+.heart{
+  position:fixed;
+  bottom:-30px;
+  font-size:25px;
+  animation:float 5s linear infinite;
+  z-index:1;
+}
+
+@keyframes float{
+  0%{
+    transform:translateY(0) rotate(0);
+    opacity:1;
+  }
+  100%{
+    transform:translateY(-110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1 id="title">ဟေး... 💗</h1>
+
+<img id="photo" class="photo">
+
+<div id="message" class="message">
+မင်းအတွက် တစ်ခုလုပ်ထားတယ်... 🥹
+</div>
+
+<button onclick="next()">Tap Me 💕</button>
+
+</div>
+
+<script>
+
+let step = 0;
+
+const data = [
+
+{
+title:"ဟေး... 🥹💗",
+text:"ဒီ Link ကို မင်းအတွက်ပဲ လုပ်ထားတာပါ။",
+image:""
+},
+
+{
+title:"ပထမဆုံး... 💌",
+text:"မင်းနဲ့အတူရှိခဲ့တဲ့ အချိန်လေးတွေကို ငါတကယ်တန်ဖိုးထားတယ်။",
+image:""
+},
+
+{
+title:"ဒီပုံလေးကိုကြည့် 🥹",
+text:"ဒီအမှတ်တရလေးကို မမေ့နဲ့နော်။ 💗",
+image:"YOUR-IMAGE-1"
+},
+
+{
+title:"တစ်ခုထပ်ပြောချင်တယ်... 💕",
+text:"မင်းက ငါ့အတွက် သာမန်လူတစ်ယောက်မဟုတ်ဘူး။",
+image:""
+},
+
+{
+title:"Happy Anniversary 💐",
+text:"တို့နှစ်ယောက်ရဲ့ အမှတ်တရနေ့လေး ပျော်ရွှင်ပါစေ။ 💗",
+image:"YOUR-IMAGE-2"
+},
+
+{
+title:"Happy Birthday 🎂",
+text:"မွေးနေ့လေးမှာ ပျော်ရွှင်ပါစေ။ မင်းလိုချင်တာတွေ အကုန်ပြည့်ပါစေ။ 🥳💗",
+image:"YOUR-IMAGE-3"
+},
+
+{
+title:"နောက်ဆုံးတစ်ခု... 🥹",
+text:"မင်းကို ချစ်တယ်။ ဒီလောက်ပါပဲ။ 💗",
+image:""
+}
+
+];
+
+function next(){
+
+step++;
+
+if(step >= data.length){
+step = data.length-1;
+}
+
+document.getElementById("title").innerHTML=data[step].title;
+document.getElementById("message").innerHTML=data[step].text;
+
+let photo=document.getElementById("photo");
+
+if(data[step].image && data[step].image !== ""){
+photo.src=data[step].image;
+photo.style.display="block";
+}else{
+photo.style.display="none";
+}
+
+createHeart();
+}
+
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML=["💗","💕","💖","💘","❤️"][Math.floor(Math.random()*5)];
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+}
+
+</script>
+
+</body>
+</html>
